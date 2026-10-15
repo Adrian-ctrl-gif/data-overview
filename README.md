@@ -1,4 +1,4 @@
-# DataFrameReporter
+# ДатаОбзор
 
 Учебный проект: перенос класса анализа данных в IDE и работа с Git.
 Класс `DataFrameReporter` помогает быстро оценить таблицу pandas: выводит
@@ -33,7 +33,7 @@ python main.py
 ## Структура
 
 ```text
-dataframe-reporter/
+ДатаОбзор/
 ├── data/payments.csv  # локальные данные, не входят в Git
 ├── src/
 │   ├── __init__.py
