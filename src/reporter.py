@@ -14,9 +14,16 @@ class DataFrameReporter:
         duplicates = df.duplicated().sum()
         print('Количество дубликатов:', duplicates)
 
-        print('Доля дубликатов:', format(duplicates / df.shape[0], self.percent_format))
+        # При отсутствии строк доля дубликатов определяется как 0.
+        duplicate_share = duplicates / len(df) if len(df) else 0
+        print('Доля дубликатов:', format(duplicate_share, self.percent_format))
 
-        print(df.describe(include='all' if self.include_all else None))
+        # describe() не может построить статистику без столбцов.
+        # Для пустых таблиц сообщаем об отсутствии наблюдений.
+        if df.empty:
+            print('Описательная статистика: нет данных')
+        else:
+            print(df.describe(include='all' if self.include_all else None))
 
         # Количество пропусков во всем датафрейме одним числом.
         missing = df.isna().sum().sum()
